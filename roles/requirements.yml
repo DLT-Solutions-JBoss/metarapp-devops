@@ -1,0 +1,10 @@
+---
+- src: https://github.com/wtcross/ansible-example-role-base.git
+  name: base
+  version: master
+- src: https://github.com/rhtconsulting/jboss_eap.git
+  name: jboss_eap
+  version: master
+- src: https://github.com/geerlingguy/ansible-role-mysql.git
+  name: mysql
+  version: master
