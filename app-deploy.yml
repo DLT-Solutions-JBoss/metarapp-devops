@@ -37,17 +37,22 @@
           CommitID: "{{ commit_id }}"
       register: image_provisioning
 
-    - add_host:
-        name: "{{ image_provisioning.instances[0].public_ip }}"
-        groups: tag_CommitID_{{ commit_id }}
-      changed_when: no
+    - set_fact:
+        instance_ip: "{{ image_provisioning.instances[0].public_ip }}"
       when: image_provisioning.instances is defined and image_provisioning.instances
 
+    - set_fact:
+        instance_ip: "{{ image_provisioning.tagged_instances[0].public_ip }}"
+      when: image_provisioning.instances is defined and image_provisioning.tagged_instances
+
     - add_host:
-        name: "{{ image_provisioning.tagged_instances[0].public_ip }}"
+        name: "{{ instance_ip }}"
         groups: tag_CommitID_{{ commit_id }}
       changed_when: no
-      when: image_provisioning.instances is defined and image_provisioning.tagged_instances
+
+    - name: instance ip
+      debug:
+        msg: "{{ instance_ip }}"
 
 - name: Gather facts and wait for the instance
   hosts: tag_CommitID_{{ commit_id }}
