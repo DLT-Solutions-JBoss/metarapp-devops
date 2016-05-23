@@ -24,6 +24,7 @@
         instance_tags:
           Name: metarapp test {{ commit_id }}
           CommitID: "{{ commit_id }}"
+          Company: Red Hat
         key_name: "{{ key_name }}"
         region: "{{ aws_region }}"
         zone: "{{ public_subnet_a_az }}"
@@ -35,6 +36,7 @@
         count_tag:
           Name: metarapp test {{ commit_id }}
           CommitID: "{{ commit_id }}"
+          Company: Red Hat
       register: image_provisioning
 
     - set_fact:
