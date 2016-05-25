@@ -55,6 +55,6 @@
 - name: Deploy the JBoss app
   jboss:
     deploy_path: /opt/jboss-as/jboss-eap-6.4/standalone/deployments
-    src: metarapp/deployments/ROOT.war
+    src: metarapp/deployments/weather.war
     deployment: metarapp.war
     state: present
